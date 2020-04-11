@@ -1,4 +1,5 @@
 venv/
 cvenv/
 .idea/
+.ideas/
 .vs/
