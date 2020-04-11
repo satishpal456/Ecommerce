@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block products %}
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
+    <br><br><br><br><br> <br><br><br> <br><br><br><br>
+	<!-- End Banner Area -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-3 col-lg-4 col-md-5">
+			</div>
+			<div class="col-xl-9 col-lg-8 col-md-7">
+				<!-- Start Filter Bar -->
+<!--				-->
+				</div>
+				<!-- End Filter Bar -->
+				<!-- Start Best Seller -->
+				<section class="lattest-product-area pb-40 category-list">
+					<div class="row">
+						<!-- single product -->
+						{% for data in product %}
+<!--						<h1>{{data.name}}</h1>-->
+						<div class="col-lg-4 col-md-6">
+							<div class="single-product">
+								<img class="img-fluid" src="{{data.image.url}}" alt="">
+								<div class="product-details">
+									<h6>{{data.name}}</h6>
+									<div class="price">
+										<h6>${{data.price}}.00</h6>
+										<h6 class="l-through">${{data.actual_mrp}}00</h6>
+									</div>
+									<div class="prd-bottom">
+
+										<a href="" class="social-info">
+											<span class=""><i class="fas fa-shopping-bag"></i></span>
+											<p onclick="add_to_cart({{data.id}},{{request.user.id}})" class="hover-text" >add to bag</p>
+										</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						<!-- single product -->
+
+						<!-- single product -->
+
+						<!-- single product -->
+
+						<!-- single product -->
+
+						<!-- single product -->
+
+					</div>
+				</section>
+				<!-- End Best Seller -->
+				<!-- Start Filter Bar -->
+				<!-- End Filter Bar -->
+			</div>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br>
+	<!-- Start related-product Area -->
+	<!-- End related-product Area -->
+
+	<!-- start footer Area -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+	function add_to_cart(id,userId)
+	{
+	var product = id
+	var user = userId
+	console.log("****",product,user)
+
+	$.ajax({
+      type: 'POST',
+      url: '/cart/',
+      data: {
+            'user': user,
+            'product': product
+      },
+      success: function (data) {
+    	alert("product added in your cart please check your cart")
+
+      }
+    });
+
+	}
+</script>
+
+{% endblock %}

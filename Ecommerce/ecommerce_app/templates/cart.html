@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block products %}
+<br><br><br><br><br>
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for data in cart_data %}
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="{{data.product.image.url}}" height="150px" width="150px" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>{{data.product.name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>${{data.product.price}}.00</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                            class="input-text qty">
+<!--                                        <button class="increase items-count" type="button"></button>-->
+<!--                                        <button-->
+<!--                                            class="reduced items-count" type="button"></button>-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>${{data.product.price}}.0</h5>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr class="bottom_button">
+
+
+<!--                                <td>-->
+<!--                                    <div class="cupon_text d-flex align-items-center">-->
+<!--                                        <input type="text" placeholder="Coupon Code">-->
+<!--                                        <a class="primary-btn" href="#">Apply</a>-->
+<!--                                        <a class="gray_btn" href="#">Close Coupon</a>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Subtotal</h5>
+                                </td>
+                                <td>
+                                    <h5>18% GST: {{GST}}</h5> <br>
+                                    <h5>${{after_gst_price}}</h5>
+                                </td>
+                            </tr>
+
+                            <tr class="out_button_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+<!--                                        <a class="gray_btn" href="#">Continue Shopping</a>-->
+                                        <form action="{% url 'checkout' %}" method="post">
+                                            {% csrf_token %}
+                                        <button class="primary-btn" type="submit">Proceed to checkout</button>
+                                            </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
